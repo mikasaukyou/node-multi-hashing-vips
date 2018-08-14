@@ -5,6 +5,7 @@
 #include <stdint.h>
 
 extern "C" {
+    #include "sha256d/sha256.h"
     #include "bcrypt.h"
     #include "keccak.h"
     #include "quark.h"
@@ -12,7 +13,6 @@ extern "C" {
     #include "scryptn.h"
     #include "yescrypt/yescrypt.h"
     #include "yescrypt/sha256.h"
-    #include "sha256d/sha256.h"
     #include "skein.h"
     #include "x11.h"
     #include "Lyra2RE.h"
