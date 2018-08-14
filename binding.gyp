@@ -4,7 +4,7 @@
             "target_name": "multihashing",
             "sources": [
                 "multihashing.cc",
-		"sha256d/sha256.cpp"
+		"sha256d/sha256.cpp",
                 "scryptjane.c",
                 "scryptn.c",
                 "yescrypt/sha256_c.h",
