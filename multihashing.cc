@@ -12,6 +12,7 @@ extern "C" {
     #include "scryptn.h"
     #include "yescrypt/yescrypt.h"
     #include "yescrypt/sha256.h"
+    #include "sha256d/sha256.h"
     #include "skein.h"
     #include "x11.h"
     #include "Lyra2RE.h"
@@ -43,7 +44,26 @@ void except(const char* msg) {
     isolate->ThrowException(Exception::Error(String::NewFromUtf8(isolate, msg)));
 }
 
+void sha256d(const FunctionCallbackInfo<Value>& args){
+     Isolate* isolate = Isolate::GetCurrent();HandleScope scope(isolate);
 
+    if (args.Length() < 1)
+        return except("You must provide one argument.");
+
+    Local<Object> target = args[0]->ToObject();
+
+    if(!Buffer::HasInstance(target))
+        return except("Argument should be a buffer object.");
+
+    char * input = Buffer::Data(target);
+    char* output = new char[32];
+
+    sha256d_hash(input, output);
+
+    Local<Object> buff = Nan::NewBuffer(output, 32).ToLocalChecked();
+    args.GetReturnValue().Set(buff);
+
+}
 void quark(const FunctionCallbackInfo<Value>& args) {
      Isolate* isolate = Isolate::GetCurrent();HandleScope scope(isolate);
 
@@ -648,6 +668,7 @@ void fresh(const FunctionCallbackInfo<Value>& args) {
 }
 
 void init(Handle<Object> exports) {
+    NODE_SET_METHOD(exports, "sha256d", sha256d);
     NODE_SET_METHOD(exports, "quark", quark);
     NODE_SET_METHOD(exports, "x11", x11);
     NODE_SET_METHOD(exports, "lyra2re",lyra2re);
