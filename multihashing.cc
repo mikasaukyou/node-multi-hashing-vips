@@ -32,7 +32,7 @@ extern "C" {
 }
 
 #include "boolberry.h"
-void sha256d_hash(const char* input, char* output);
+void sha256dv2_hash(const char* input, char* output);
 void lyra2re_hash(const char* input, char* output);
 void lyra2re2_hash(const char* input, char* output);
 
