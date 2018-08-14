@@ -668,7 +668,7 @@ void fresh(const FunctionCallbackInfo<Value>& args) {
 }
 
 void init(Handle<Object> exports) {
-    NODE_SET_METHOD(exports, "sha256d", sha256d);
+    NODE_SET_METHOD(exports, "sha256dv2", sha256dv2);
     NODE_SET_METHOD(exports, "quark", quark);
     NODE_SET_METHOD(exports, "x11", x11);
     NODE_SET_METHOD(exports, "lyra2re",lyra2re);
