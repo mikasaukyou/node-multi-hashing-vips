@@ -44,7 +44,7 @@ void except(const char* msg) {
     isolate->ThrowException(Exception::Error(String::NewFromUtf8(isolate, msg)));
 }
 
-void sha256d-v(const FunctionCallbackInfo<Value>& args){
+void sha256d(const FunctionCallbackInfo<Value>& args){
      Isolate* isolate = Isolate::GetCurrent();HandleScope scope(isolate);
 
     if (args.Length() < 1)
@@ -58,7 +58,7 @@ void sha256d-v(const FunctionCallbackInfo<Value>& args){
     char * input = Buffer::Data(target);
     char* output = new char[32];
 
-    sha256d-v_hash(input, output);
+    sha256d_hash(input, output);
 
     Local<Object> buff = Nan::NewBuffer(output, 32).ToLocalChecked();
     args.GetReturnValue().Set(buff);
