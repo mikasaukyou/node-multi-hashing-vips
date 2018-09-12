@@ -29,8 +29,6 @@
 #include <stdlib.h>
 #include "yespower.h"
 
-static const yespower_params_t yespower_0_5_bitzeny = {YESPOWER_0_5, 2048, 8, "Client Key", 10};
-
 // WARNING DO NOT USE THIS IN yespower_hash YET. For later HF to yespower 1.0
 // TODO Find HF solution using unixtime or blockheight(recommended)
 
@@ -55,8 +53,7 @@ of yescrypt 0.5.
 // solardiz recommended yespower 1.0 settings of at least N=2048 r=32 (8 MiB)
 static const yespower_params_t yespower_1_0_bitzeny = {YESPOWER_1_0, 2048, 32, NULL, 0};
 
-// yespower 0.5 only
 void yespower_hash(const char *input, char *output){
-  if (yespower_tls(input, 80, &yespower_0_5_bitzeny, (yespower_binary_t *) output))
+  if (yespower_tls(input, 80, &yespower_1_0_bitzeny, (yespower_binary_t *) output))
       abort();
 }
